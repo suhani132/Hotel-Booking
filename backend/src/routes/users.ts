@@ -1,6 +1,6 @@
 import express, {Request, Response} from "express";
-import User from "../models/user";
-import jwt from "jsonwebtoken";
+import User from "../models/User";
+import jwt from "jsonWebToken";
 import { check, validationResult } from 'express-validator';
 
 const router = express.Router();
@@ -10,8 +10,8 @@ router.post("/register",[
     check("firstName", "First Name is required").isString(),
     check("lastName", "Last Name is required").isString(),
     check("email", "Email is required").isEmail(),
-    check("password", "Password with ^ or more characters required").isLength({
-        min:6,
+    check("password", "Password with 8 or more characters required").isLength({
+        min:8,
     }),
    ],
      async (req: Request, res: Response)=>{
