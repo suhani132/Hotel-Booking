@@ -6,6 +6,13 @@ import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
 import cookieParser from "cookie-parser";
 import path from "path";
+import { v2 as cloudinary} from "cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
 
 
 mongoose
@@ -16,14 +23,14 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
+app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
 //for e2e test
-app.use(cors({
-  origin: 'http://localhost:5173', // Replace with your frontend's origin
-  methods: 'GET, POST, PUT, DELETE', // Allowed methods
-  credentials: true // If you need to send cookies or authentication headers
-}));
+// app.use(cors({
+//   origin: 'http://localhost:5173', // Replace with your frontend's origin
+//   methods: 'GET, POST, PUT, DELETE', // Allowed methods
+//   credentials: true // If you need to send cookies or authentication headers
+// }));
 
 app.get("/api/test", async (req: Request, res: Response) => {
   res.json({ message: "hello from express endpoint!" });
