@@ -5,41 +5,39 @@ import { useAppContext } from "../contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
 
 export type SignInFormData = {
-    email: string;
-    password: string;
-    };
+  email: string;
+  password: string;
+};
 
 const SignIn = () => {
-    const {showToast} = useAppContext();
-    const navigate = useNavigate();
-    const queryClient = useQueryClient();
-    const {
-        register,
-        formState: { errors},
-        handleSubmit
-} = useForm<SignInFormData>();
-    
-const mutation = useMutation(apiClient.signIn, {
-    onSuccess: async () =>{
-        showToast({message: "Sign in Successfull", type: "SUCCESS"});
-        await queryClient.invalidateQueries("validateToken")
-        navigate("/");
+  const { showToast } = useAppContext();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<SignInFormData>();
 
-    }, 
-    onError: (error: Error) =>{
-        showToast({message: error.message , type: "ERROR"});
-
+  const mutation = useMutation(apiClient.signIn, {
+    onSuccess: async () => {
+      showToast({ message: "Sign in Successfull", type: "SUCCESS" });
+      await queryClient.invalidateQueries("validateToken");
+      navigate("/");
     },
-});
+    onError: (error: Error) => {
+      showToast({ message: error.message, type: "ERROR" });
+    },
+  });
 
-const onSubmit = handleSubmit( (data) =>{
+  const onSubmit = handleSubmit((data) => {
     mutation.mutate(data);
-});
+  });
 
-    return (
-        <form className="flex flex-col gap-5" onSubmit = {onSubmit}>
-            <h2 className="text-3xl text-purple-950 font-bold">Sign In</h2>
-            <label className="text-purple-950 text-sm font-bold flex-1">
+  return (
+    <form className="flex flex-col gap-5" onSubmit={onSubmit}>
+      <h2 className="text-3xl text-purple-950 font-bold">Sign In</h2>
+      <label className="text-purple-950 text-sm font-bold flex-1">
         Email
         <input
           type="email"
@@ -66,10 +64,13 @@ const onSubmit = handleSubmit( (data) =>{
         {errors.password && (
           <span className="text-red-500">{errors.password.message}</span>
         )}
-      </label>  
+      </label>
       <span className="flex items-center justify-between ">
         <span className="text-sm ">
-          Not registered? <Link className="underline" to="/register">Create an Account here.</Link>
+          Not registered?{" "}
+          <Link className="underline" to="/register">
+            Create an Account here.
+          </Link>
         </span>
         <button
           type="submit"
@@ -78,8 +79,8 @@ const onSubmit = handleSubmit( (data) =>{
           Login
         </button>
       </span>
-        </form>
-    );
+    </form>
+  );
 };
 
 export default SignIn;
