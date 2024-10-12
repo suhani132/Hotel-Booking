@@ -7,7 +7,7 @@
     "dev": "nodemon",
     "build": "npm install && npx tsc",
     "start": "node ./dist/index.js",
-    "testhu": "cross-env DOTENV_CONFIG_PATH=.env.e2e nodemon"
+    "test": "cross-env DOTENV_CONFIG_PATH=.env.e2e nodemon"
   },
   "author": "",
   "license": "ISC",
