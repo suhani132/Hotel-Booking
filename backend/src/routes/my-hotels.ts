@@ -95,7 +95,7 @@ router.put(
         },
         updatedHotel,
         { new: true }
-      );
+       );
 
       if (!hotel) {
         return res.status(404).json({ message: "Hotel not found" });
@@ -113,7 +113,7 @@ router.put(
       res.status(201).json(hotel);
     } catch (error) {
       res.status(500).json({ message: "Something went throw" });
-    }
+    } 
   }
 );
 
@@ -129,4 +129,4 @@ async function uploadImages(imageFiles: Express.Multer.File[]) {
   return imageUrls;
 }
 
-export default router;
+export default router; 

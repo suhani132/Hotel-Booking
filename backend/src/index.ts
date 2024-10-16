@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import { v2 as cloudinary} from "cloudinary";
 import myHotelRoutes from './routes/my-hotels';
+import hotelRoutes from "./routes/hotels";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -24,14 +25,14 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
+app.use(cors({ origin: process.env.FRONTEND_URL,credentials: true }));
 
 //for e2e test
-app.use(cors({
-  origin: process.env.FRONTEND_URL, // Replace with your frontend's origin
-  methods: 'GET, POST, PUT, DELETE', // Allowed methods
-  credentials: true // If you need to send cookies or authentication headers
-}));
+// app.use(cors({
+//   origin: process.env.FRONTEND_URL, // Replace with your frontend's origin
+//   methods: 'GET, POST, PUT, DELETE', // Allowed methods
+//   credentials: true // If you need to send cookies or authentication headers
+// }));
 
 app.get("/api/test", async (req: Request, res: Response) => {
   res.json({ message: "hello from express endpoint!" });
@@ -41,7 +42,8 @@ app.use(express.static(path.join(__dirname, "../../frontend/dist")))
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/my-hotels", myHotelRoutes)
+app.use("/api/my-hotels", myHotelRoutes);
+app.use("/api/hotels", hotelRoutes);
 
 app.get("*", (req: Request, res:Response)=>{
   res.sendFile(path.join(__dirname, '../../frontend/dist/index.html'));
