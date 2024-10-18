@@ -12,7 +12,7 @@ import { useAppContext } from "./contexts/AppContext";
 import MyHotels from "./pages/MyHotels";
 import EditHotel from "./pages/EditHotel";
  import Search from "./pages/Search";
-// import Detail from "./pages/Detail";
+import Detail from "./pages/Details";
 // import Booking from "./pages/Booking";
 // import MyBookings from "./pages/MyBookings";
 // import Home from "./pages/Home";
@@ -35,6 +35,14 @@ const App = () => {
           element={
             <Layout>
               <Search/>
+            </Layout>
+          }
+        />
+        <Route
+          path="/detail/:hotelId"
+          element={
+            <Layout>
+              <Detail/>
             </Layout>
           }
         />
