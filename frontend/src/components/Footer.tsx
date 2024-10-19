@@ -3,7 +3,7 @@ const Footer = () => {
     <div className="bg-purple-900  py-10">
       <div className="container mx-auto flex flex-col  items-center text-white">
         <span className=" text-md items-center">
-          MernBooking.com is part of Booking Holdings Inc., the world leader in
+          HolidayIn.com is part of Booking Holdings Inc., the world leader in
           online travel and related services.
         </span>
         <span className="text-md items-center">Copyright © 1996–2024 Booking.com™. All rights reserved.</span>
