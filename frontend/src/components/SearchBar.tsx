@@ -6,7 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const search = useSearchContext();
 
   const [destination, setDestination] = useState<string>(search.destination);
@@ -24,11 +24,11 @@ const SearchBar = () => {
       adultCount,
       childCount
     );
-    navigate("/search")
+    navigate("/search");
   };
   const minDate = new Date();
   const maxDate = new Date();
-  maxDate.setFullYear(maxDate.getFullYear() +1 );
+  maxDate.setFullYear(maxDate.getFullYear() + 1);
   return (
     <form
       onSubmit={handleSubmit}
@@ -91,16 +91,17 @@ const SearchBar = () => {
           endDate={checkOut}
           minDate={minDate}
           maxDate={maxDate}
-          placeholderText="Check-in Date"
+          placeholderText="Check-out Date"
           className="min-w-full bg-white p-2 focus:outline-none"
           wrapperClassName="min-w-full"
         />
       </div>
       <div className="flex gap-1">
         <button className="w-2/3 bg-purple-900 text-white h-full p-2 font-bold text-xl hover:bg-purple-600">
-        Search</button>
-        <button  className="w-2/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500">
-            clear
+          Search
+        </button>
+        <button className="w-2/3 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500">
+          clear
         </button>
       </div>
     </form>
